@@ -5,13 +5,35 @@
   justify-content: space-between;
 
   .logo {
-    height: 40px;
-    width: 40px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+
+    img {
+      height: 30px;
+      width: 30px;
+      margin-right: 8px;
+    }
+  }
+
+  .notice {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    span {
+      margin-right: 8px;
+    }
+  }
+
+  .notice:hover {
+    color: #1677ff;
   }
 
   .menu {
-    height: 40px;
-    line-height: 40px;
+    height: 35px;
+    line-height: 35px;
   }
 }
 
@@ -34,4 +56,5 @@
       border-bottom-color: transparent
     }
   }
+
 }

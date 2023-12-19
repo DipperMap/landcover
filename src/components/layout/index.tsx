@@ -4,6 +4,7 @@ import { MenuInfo } from "rc-menu/lib/interface"
 import React, { useState } from "react";
 import { Layout } from 'antd';
 import { useLocation, useNavigate } from "react-router";
+import { InfoCircleOutlined } from "@ant-design/icons";
 
 type HeaderRenderProps = {
   container: React.ReactNode
@@ -25,10 +26,17 @@ export const LandCoverLayout = (props: HeaderRenderProps) => {
     navigate(e.key)
   }
 
+  const goNotice = () => {
+    window.open("https://www.landcover100.com/UserWebPage", "_blank")
+  }
+
   const HeaderRender = () => {
     return (
       <div className={styles.headerRender}>
-        <img className={styles.logo} src="https://www.landcover100.com/img/logo.png" alt="" />
+        <div className={styles.logo} >
+          <img src="https://www.landcover100.com/img/logo.png" alt="" />
+          <span>遥感产品数据云</span>
+        </div>
         <Menu
           className={styles.menu}
           onClick={onClick}
@@ -36,7 +44,10 @@ export const LandCoverLayout = (props: HeaderRenderProps) => {
           mode="horizontal"
           items={items}
         />
-        <div style={{ width: 40 }} />
+        <div className={styles.notice} onClick={goNotice}>
+          <InfoCircleOutlined />
+          使用须知
+        </div>
       </div>
     )
   }

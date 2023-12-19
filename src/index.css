@@ -66,3 +66,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.ant-layout-header {
+  padding: 0 32px;
+}
