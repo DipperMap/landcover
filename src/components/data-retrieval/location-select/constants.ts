@@ -1,91 +1,97 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getSingleColorStyle } from "@antv/l7-draw";
-import { ChoroplethLayerProps, LineLayerProps, PointLayerProps } from "@antv/larkmap";
+import {
+  ChoroplethLayerProps,
+  LineLayerProps,
+  PointLayerProps,
+} from "@antv/larkmap";
 import { message } from "antd";
 import { getEnv } from "../../../utils";
-
 
 export const enum CoordType {
   Point = "Point",
   LineString = "LineString",
   Polygon = "Polygon",
   MultiPolygon = "MultiPolygon",
-  MultiLineString = "MultiLineString"
+  MultiLineString = "MultiLineString",
 }
 
-export const CITY_LIST = "https://mdn.alipayobjects.com/afts/file/A*1t_pTZauqCIAAAAAAAAAAAAADrd2AQ/city.json"
+export const CITY_LIST =
+  "https://mdn.alipayobjects.com/afts/file/A*1t_pTZauqCIAAAAAAAAAAAAADrd2AQ/city.json";
 
-export const ICON = "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*CHCXT7F_3YkAAAAAAAAAAAAADmJ7AQ/original"
+export const ICON =
+  "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*CHCXT7F_3YkAAAAAAAAAAAAADmJ7AQ/original";
 
-export const layerOptions: Omit<ChoroplethLayerProps, 'source'> = {
+export const layerOptions: Omit<ChoroplethLayerProps, "source"> = {
   autoFit: true,
   fillColor: "#377eb8",
   opacity: 0.3,
-  strokeColor: 'blue',
+  strokeColor: "blue",
   lineWidth: 1,
   state: {
-    active: { strokeColor: 'green', lineWidth: 1.5, lineOpacity: 0.8 },
-    select: { strokeColor: 'red', lineWidth: 1.5, lineOpacity: 0.8 },
+    active: { strokeColor: "green", lineWidth: 1.5, lineOpacity: 0.8 },
+    select: { strokeColor: "red", lineWidth: 1.5, lineOpacity: 0.8 },
   },
   zIndex: 2,
   label: {
-    field: '省',
+    field: "省",
     visible: true,
-    style: { fill: '#fff', fontSize: 12, stroke: '#000', strokeWidth: 2 },
+    style: { fill: "#fff", fontSize: 12, stroke: "#000", strokeWidth: 2 },
   },
 };
 
-export const pointOptions: Omit<PointLayerProps, 'source'> = {
+export const pointOptions: Omit<PointLayerProps, "source"> = {
   autoFit: true,
-  shape: 'img',
+  shape: "img",
   size: 12,
   zIndex: 3,
 };
 
-export const lineOptions: Omit<LineLayerProps, 'source'> = {
+export const lineOptions: Omit<LineLayerProps, "source"> = {
   autoFit: true,
-  shape: 'line' as const,
+  shape: "line" as const,
   size: 1.5,
   color: "#377eb8",
   style: {
     opacity: 1,
-    lineType: 'solid' as const,
+    lineType: "solid" as const,
   },
   zIndex: 4,
 };
 
-
 export const queryRegionData = (code: string) => {
-  const newCode = code.length === 9 ? `${code}000` : code
+  const newCode = code.length === 9 ? `${code}000` : code;
   return new Promise((resolve, reject) => {
     const header = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ code: newCode })
-    }
+      body: JSON.stringify({ code: newCode }),
+    };
     fetch(getEnv("/getGsonDB"), header)
-      .then(response => response.json())
-      .then(data => {
-        if (data.status === 'success') {
-          fetch(getEnv(`${data.filepath}`)).then((res) => res.json()).then((res) => resolve(res))
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          fetch(getEnv(`${data.filepath}`))
+            .then((res) => res.json())
+            .then((res) => resolve(res));
         } else {
-          reject()
-          message.error(data.message)
+          reject();
+          message.error(data.message);
         }
       })
       .catch(() => {
-        message.info("暂无数据")
+        message.info("暂无数据");
       });
-  })
-}
+  });
+};
 
 export const optionSelect = [
   { label: "行政区划", value: "admin" },
   { label: "本地上传", value: "upload" },
-  { label: "绘制", value: "draw" }
-]
+  { label: "绘制", value: "draw" },
+];
 
 export const getDrawStyle = (color: string, LayerZIndex: number) => {
   const style: any = getSingleColorStyle(color);

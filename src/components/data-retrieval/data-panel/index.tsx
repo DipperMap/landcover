@@ -1,17 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Tree } from "antd"
-import styles from "./index.module.less"
+import { Button, Tree } from "antd";
+import styles from "./index.module.less";
 import { DataNode } from "rc-tree/lib/interface";
-
-
 
 const treeData: DataNode[] = [];
 
 export const DataPanel = () => {
-
   const onSelect = (keys: any, info: any) => {
-    console.log("key", keys, info)
-  }
+    console.log("key", keys, info);
+  };
 
   return (
     <div className={styles.dataPanel}>
@@ -20,7 +17,7 @@ export const DataPanel = () => {
         <Tree
           showLine
           showIcon
-          defaultExpandedKeys={['0-0-0']}
+          defaultExpandedKeys={["0-0-0"]}
           onSelect={onSelect}
           checkStrictly={false}
           treeData={treeData}
@@ -31,5 +28,5 @@ export const DataPanel = () => {
         <Button type="primary">数据下载</Button>
       </div>
     </div>
-  )
-}
+  );
+};
