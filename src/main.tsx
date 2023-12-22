@@ -1,10 +1,26 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { LandCoverLayout } from "./components/layout/index.tsx";
+import { DataRetrieval } from "./components/data-retrieval/index.tsx";
+import { DataAssets } from "./components/data-assets/index.tsx";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const root = document.getElementById("root");
+ReactDOM.createRoot(root!).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/retrieval" />} />
+        <Route
+          path="/retrieval"
+          element={<LandCoverLayout container={<DataRetrieval />} />}
+        />
+        <Route
+          path="/assets"
+          element={<LandCoverLayout container={<DataAssets />} />}
+        />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
-)
+);

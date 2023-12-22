@@ -1,0 +1,27 @@
+.dataPanel {
+  height: calc(100vh - 64px);
+  width: 380px;
+  color: #000;
+  padding: 10px;
+  border-right: 1px solid #e4e1e1;
+  overflow-y: scroll;
+
+  :global {
+    .ant-tree .ant-tree-node-content-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .ant-tree-iconEle {
+      width: 40px !important;
+    }
+  }
+}
+
+.dataPanel {
+  overflow: auto;
+}
+
+.dataPanel::-webkit-scrollbar {
+  width: 0.5em;
+}
