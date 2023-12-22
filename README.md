@@ -1,30 +1,42 @@
-# React + TypeScript + Vite
+# [LandCover 遥感产品数据云](https://landcover.dippermap.com/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## 产品特性
+- 目前支持大部分的DEM数据和土地覆盖数据下载。
+- 3种区域选择方式：
+  - 区划选择（省-市-县-乡）
+  - 在线绘制（点线面）
+  - 上传矢量文件（shp,geojson,kml)
+ 
+## 下载方法
+1. 选中所需要的数据
+2. 选择下载区域（区划，绘制，矢量文件）
+3. 点击下载
+## 数据清单
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+| 名称              | 类别                |
+| ---------------- | ------------------- |
+| 250米DEM         | 低分辨率DEM数据      |
+| 1000米DEM        | 低分辨率DEM数据      |
+| 12.5米ALOS_DEM   | 高分辨率DEM数据      |
+| TANX30米DEM      | 中分辨率DEM数据      |
+| 30米Copernicus_DEM  | 中分辨率DEM数据   |
+| 30米SRTM_V3.0_DEM   | 中分辨率DEM数据   |
+| 30米ASTER_DEM    | 中分辨率DEM数据      |
+| 30米AW3D30_V4     | 中分辨率DEM数据      |
+| 30米NASA_DEM      | 中分辨率DEM数据      |
+| modis土地覆盖      | 低分辨率土地覆盖数据 |
+| ESA_CCI土地覆盖   | 低分辨率土地覆盖数据 |
+| GAZE土地覆盖      | 低分辨率土地覆盖数据 |
+| GLCNMO土地覆盖    | 低分辨率土地覆盖数据 |
+| CLCD土地覆盖      | 中分辨率土地覆盖数据 |
+| AGLC土地覆盖      | 中分辨率土地覆盖数据 |
+| GLC30土地覆盖     | 中分辨率土地覆盖数据 |
+| GLC_FCS土地覆盖   | 中分辨率土地覆盖数据 |
+| GLCLUC土地覆盖    | 中分辨率土地覆盖数据 |
+| ESA土地覆盖       | 高分辨率土地覆盖数据 |
+| FROM_LC          | 高分辨率土地覆盖数据 |
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 鸣谢
+- [遥感之家](https://mp.weixin.qq.com/s/Y_WTPNCrYyK8zFqyxgfVGg)
+- [ThinkGIS](https://www.yuque.com/xiaofengcanyue/iea8af/cqxzcp2m5cf6w9cu)
