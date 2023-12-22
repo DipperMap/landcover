@@ -15,4 +15,15 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    port: 8000,
+    cors: true,
+    proxy: {
+      '/api': {
+        target: 'https://www.landcover100.com/',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })

@@ -19,7 +19,7 @@ export const BASE_LAYER_GROUP = [
     title: "矢量地图",
     image:
       'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*qdFDSbvIalgAAAAAAAAAAAAADmJ7AQ/original',
-    layers: [],
+    layers: undefined,
   },
   {
     type: OfficeLayerEnum.GoogleSatellite,

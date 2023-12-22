@@ -70,3 +70,7 @@ button:focus-visible {
 .ant-layout-header {
   padding: 0 32px;
 }
+
+body {
+  overflow: hidden;
+}

@@ -21,6 +21,7 @@
 
   .hideOfficeLayerBtn {
     width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,12 +36,11 @@
       transition: all 0.2s;
     }
 
-    color: rgba(0, 0, 0, 0.45);
+    color: rgba(0, 0, 0, 1);
   }
 
   .amapInfo {
     display: flex;
-    align-items: center;
     cursor: pointer;
     padding: 10px;
 
@@ -59,11 +59,13 @@
     }
 
     .amapInfoItemImage {
-      width: 142px;
+      width: 138px;
       height: 80px;
+      overflow: hidden;
     }
 
     .amapInfoItemTitle {
+      text-align: center;
       color: rgba(0, 0, 0, 0.8);
     }
   }
