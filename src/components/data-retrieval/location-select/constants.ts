@@ -19,14 +19,10 @@ export const ICON = "https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*CHCX
 
 export const layerOptions: Omit<ChoroplethLayerProps, 'source'> = {
   autoFit: true,
-  fillColor: "#377eb8",
+  fillColor: "#1677ff",
   opacity: 0.3,
-  strokeColor: 'blue',
-  lineWidth: 1,
-  state: {
-    active: { strokeColor: 'green', lineWidth: 1.5, lineOpacity: 0.8 },
-    select: { strokeColor: 'red', lineWidth: 1.5, lineOpacity: 0.8 },
-  },
+  strokeColor: '#000',
+  lineWidth: 2,
   zIndex: 2,
   label: {
     field: '省',
@@ -46,7 +42,7 @@ export const lineOptions: Omit<LineLayerProps, 'source'> = {
   autoFit: true,
   shape: 'line' as const,
   size: 1.5,
-  color: "#377eb8",
+  color: "#1677ff",
   style: {
     opacity: 1,
     lineType: 'solid' as const,
@@ -57,7 +53,7 @@ export const lineOptions: Omit<LineLayerProps, 'source'> = {
 
 export const queryRegionData = (code: string) => {
   const newCode = code.length === 9 ? `${code}000` : code
-  return new Promise((resolve, reject) => {
+  return new Promise<any>((resolve, reject) => {
     const header = {
       method: 'POST',
       headers: {
@@ -69,7 +65,7 @@ export const queryRegionData = (code: string) => {
       .then(response => response.json())
       .then(data => {
         if (data.status === 'success') {
-          fetch(getEnv(`${data.filepath}`)).then((res) => res.json()).then((res) => resolve(res))
+          fetch(getEnv(`${data.filepath}`)).then((res) => res.json()).then((res) => resolve({ path: data.filepath, res }))
         } else {
           reject()
           message.error(data.message)

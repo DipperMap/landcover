@@ -37,7 +37,7 @@ export const DrawControlLand = () => {
     if (drawRef.current && !scene) return
     drawRef.current = new DrawControl(scene, {
       commonDrawOptions: {
-        style: getDrawStyle("yellow", 7),
+        style: getDrawStyle("#1677ff", 7),
       }
     });
     // 将 Control 添加至地图中

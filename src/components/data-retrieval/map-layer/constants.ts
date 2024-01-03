@@ -4,12 +4,15 @@ export const GOOGLE_TILE_MAP_URL =
 export const GOOGLE_TILE_MAP_ROUTER_URL =
   'https://gac-geo.googlecnapps.cn/maps/vt?lyrs=h&gl=CN&x={x}&y={y}&z={z}';
 
+export const OPEN_TOPO_MAP = "https://b.tile.opentopomap.org/{z}/{x}/{y}.png"
+
 export const GEO_VIS_EARTH = "https://tiles{1-3}.geovisearth.com/base/v1/img/{z}/{x}/{y}?format=webp&tmsIds=w&token=b2a0cfc132cd60b61391b9dd63c15711eadb9b38a9943e3f98160d5710aef788"
 
 export enum OfficeLayerEnum {
   GoogleSatellite = 'googleSatellite',
   VectorMap = 'vectorMap',
-  GeoVisEarth = 'geoVisEarth'
+  GeoVisEarth = 'geoVisEarth',
+  OpenTopoMap = 'openTopoMap'
 }
 
 
@@ -33,6 +36,13 @@ export const BASE_LAYER_GROUP = [
     title: "星图地图",
     image:
       'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*Gg87TbHRYNcAAAAAAAAAAAAADmJ7AQ/original',
-    layers: [GEO_VIS_EARTH],
+    layers: [GEO_VIS_EARTH, GOOGLE_TILE_MAP_ROUTER_URL],
+  },
+  {
+    type: OfficeLayerEnum.OpenTopoMap,
+    title: "openTopoMap",
+    image:
+      'https://mdn.alipayobjects.com/huamei_juqv6t/afts/img/A*Zx4iT7FqYcgAAAAAAAAAAAAADiaPAQ/original',
+    layers: [OPEN_TOPO_MAP],
   },
 ];

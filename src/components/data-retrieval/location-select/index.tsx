@@ -13,8 +13,10 @@ import { getEnv } from "../../../utils"
 
 const { Dragger } = Upload;
 
-
-export const LocationSelect = () => {
+type LocationProps = {
+  setCityInfo: (value: any) => void
+}
+export const LocationSelect = (props: LocationProps) => {
   const scene = useScene()
   const [coordType, setCoordType] = useState<keyof typeof CoordType>()
   const [select, setSelect] = useState("admin")
@@ -30,26 +32,29 @@ export const LocationSelect = () => {
   }, [])
 
   const onChange = (value: string) => {
-
+    setRegionData(undefined)
     setSelect(value)
   }
 
   const onCityChange = async (value: SingleValueType) => {
     const code = value[value.length - 1] as string
-    const featureData: any = await queryRegionData(code)
-    const firstFeature = featureData.features[0]
+    const result: Record<string, any> = await queryRegionData(code)
+    const firstFeature = (result?.res as any).features[0]
     setCoordType((turf as any).getType(firstFeature))
-    setRegionData(featureData)
+    setRegionData((result?.res as any))
+    props.setCityInfo({ path: result?.path, code })
   }
 
   // 自定义上传逻辑
   const customRequest = async (options: any) => {
     const formData = new FormData()
     formData.append('file', options.file)
-    const response = await fetch(getEnv("/uploadvector"), {
+    const fileExt = options.file.name.split('.')[1]
+    const newUrl = ["kml", 'geojson', 'gson'].includes(fileExt) ? "/uploadvector" : '/uploadSHPvector'
+
+    const response = await fetch(getEnv(newUrl), {
       method: 'POST',
       body: formData
-
     });
     const result = await response.json();
     if (response.ok) {
@@ -87,7 +92,7 @@ export const LocationSelect = () => {
   const UploadControl = () => {
     return (
       <Dragger
-        accept="shp,geojson,kml"
+        accept=".gson,.shp,.geojson,.kml,.dbf,.shx,.qmd,.cpg,.prj"
         showUploadList={false}
         style={{ width: 200, background: "#fff", marginTop: 8 }}
         customRequest={customRequest}
@@ -110,7 +115,6 @@ export const LocationSelect = () => {
   // 对上传的数据类型进行处理,不同的形状用不同的图层
   const layerRender = useMemo(() => {
     if (!regionData && !coordType) return null
-
     if (coordType === "MultiPolygon" || coordType === "Polygon") {
       return <ChoroplethLayer {...layerOptions} source={{ data: regionData }} />
     }
@@ -121,7 +125,8 @@ export const LocationSelect = () => {
     if (coordType === "LineString" || coordType === "MultiLineString") {
       return <LineLayer {...lineOptions} source={{ data: regionData }} />
     }
-  }, [regionData, coordType, scene])
+
+  }, [JSON.stringify(regionData), coordType, scene])
 
   return (
     <div className={styles.region}>

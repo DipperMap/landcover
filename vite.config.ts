@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [
     react()
   ],
+
   css: {
     preprocessorOptions: {
       less: {
@@ -16,13 +17,18 @@ export default defineConfig({
     },
   },
   server: {
-    port: 8000,
+    port: 8080,
     cors: true,
     proxy: {
       '/api': {
         target: 'https://www.landcover100.com/',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      '/tile': {
+        target: 'https://geoserver.landcover100.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/tile/, '')
       }
     }
   }

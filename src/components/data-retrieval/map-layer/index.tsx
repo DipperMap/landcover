@@ -55,6 +55,7 @@ export function MapLayer() {
     const layer = scene.getLayers().filter((item) => item.type === "RasterLayer")
     if (radioValue === "vectorMap") {
       layer.forEach((item) => {
+        if (!(item as any).rawConfig.id) return
         const [id] = (item as any).rawConfig.id.split("_")
         if (id === "googleTile") {
           const targetLayer = scene.getLayer(item.id)
