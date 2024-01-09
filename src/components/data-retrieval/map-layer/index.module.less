@@ -1,0 +1,72 @@
+.mapTab {
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px -4px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px;
+
+  &:hover .add-map {
+    display: block;
+  }
+
+  .add-map {
+    display: none;
+    text-align: center;
+
+    &:hover {
+      display: block;
+      color: #1677ff;
+    }
+  }
+
+  .hideOfficeLayerBtn {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(255, 255, 255);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 2;
+    transition: all 0.1s 0.1s ease-in-out;
+
+    .anticon {
+      transition: all 0.2s;
+    }
+
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .amapInfo {
+    display: flex;
+    cursor: pointer;
+    padding: 10px;
+
+    .amapInfoItem {
+      width: 142px;
+      margin-left: 10px;
+    }
+
+    .itemBorderActive {
+      border-radius: 4px;
+      border: solid 2px #1677ff;
+    }
+
+    .itemBorder {
+      border: 1px solid #f1f1f1;
+    }
+
+    .amapInfoItemImage {
+      width: 138px;
+      height: 80px;
+      overflow: hidden;
+    }
+
+    .amapInfoItemTitle {
+      text-align: center;
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+}
